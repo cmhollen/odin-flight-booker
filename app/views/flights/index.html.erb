@@ -1,0 +1,26 @@
+<h1>Search for your flight</h1>
+
+<%= form_for(@flight, method: :get) do |f| %>
+  <%= f.label :departure_airport_id, "From:" %>
+  <%= f.select(:departure_airport_id, @airport_codes) %>
+
+  <%= f.label :arrival_airport_id, "To:" %>
+  <%= f.select(:arrival_airport_id, @airport_codes) %>
+
+  <%= f.submit "Search" %>
+<% end %>
+
+<h1>Flights</h1>
+
+<% if @results.nil? %>
+  No flights match your search
+<% else %>
+  <% @results.each do |flight| %>
+    <%= flight.departure_time %>
+    <%= flight.departure_airport.code %>
+    <%= flight.arrival_airport.code %>
+    <%= flight.departure_time.strftime("%I:%M%p") %><br/><br/>
+    
+  <% end %>
+
+<% end %>
