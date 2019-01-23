@@ -1,0 +1,16 @@
+<% @bookings.each do |booking| %>
+    <p>
+      Flight: <%= booking.flight.id %> -- 
+      <%= booking.flight.departure_airport.code %> to 
+      <%= booking.flight.arrival_airport.code %>
+    </p>
+    <p>
+      Departing on <%= booking.flight.date %> at 
+      <%= booking.flight.departure_time.to_s(:time) %>
+    </p>
+    <p>
+    Confirmed Passenger: 
+    <%= booking.passenger.name %>
+    </p><br/><br/>
+<% end %>
+    

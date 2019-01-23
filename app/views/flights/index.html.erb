@@ -10,6 +10,9 @@
   <%= f.label :departure_date, "Date:" %>
   <%= f.select(:date, @date_options) %>
 
+  <%= label_tag :passengers_num, "Passengers: " %>
+  <%= select_tag(:passengers_num, options_for_select(1..4)) %>
+
   <%= f.submit "Search" %>
 <% end %>
 
@@ -18,11 +21,16 @@
 <% if @results.blank? %>
   No flights match your search
 <% else %>
-  <% @results.each do |flight| %>
-    <%= flight.departure_airport.code %>
-    <%= flight.arrival_airport.code %>
-    <%= flight.departure_time.to_s(:time) %><br/><br/>
-    
+  <%= form_for(@flight, url: new_booking_path, method: :get) do |f| %>
+    <% @results.each do |flight| %>
+      <%= f.radio_button(:flight, flight.id, checked: false) %>
+      <%= f.label :flight %>
+        <%= flight.departure_airport.code %>
+        <%= flight.arrival_airport.code %>
+        <%= flight.departure_time.to_s(:time) %><br/><br/>
+    <% end %>
+    <%= f.hidden_field :passengers_num, value: params[:passengers_num] %>
+    <%= f.submit "Submit" %>
   <% end %>
 
 <% end %>
