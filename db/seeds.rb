@@ -14,6 +14,7 @@ Airport.create(code: "SFO")
 Airport.create(code: "TPA")
 
 Flight.create(departure_airport_id: 1, arrival_airport_id: 2, departure_time: 5.hours.since.to_s(:time), date: Date.current)
+Flight.create(departure_airport_id: 1, arrival_airport_id: 2, departure_time: 6.hours.since.to_s(:time), date: Date.current)
 Flight.create(departure_airport_id: 5, arrival_airport_id: 4, departure_time: 12.hours.since.to_s(:time), date: Date.current)
 Flight.create(departure_airport_id: 3, arrival_airport_id: 6, departure_time: 2.days.since.to_s(:time), date: Date.current)
 Flight.create(departure_airport_id: 3, arrival_airport_id: 2, departure_time: 7.days.since.to_s(:time), date: Date.current)

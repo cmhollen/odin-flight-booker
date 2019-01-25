@@ -5,10 +5,23 @@
 <p>Departing: <%= @booking.flight.date %> at 
 <%= @booking.flight.departure_time.to_s(:time) %>
 </p>
-<p>Passengers: <%= @passengers_num %></p>
+<p>Passengers: <%= @passengers_num %></p><br/><br/>
 
 <%= form_for @booking do |f| %>
-    <%= f.hidden_field :flight, value: @booking.flight.id %>
+  <p>Enter your passenger information</p>
+  
+    
+ 
+    <%= f.fields_for :passengers do |passenger_form| %>
+      <%= passenger_form.label :name %>
+      <%= passenger_form.text_field :name %>
+
+      <%= passenger_form.label :email %>
+      <%= passenger_form.email_field :email %>
+    
+  <% end %>
+
+<% if false %>
     <ul>
       <% @passengers_num.times do |passenger_index| %>
         <%= f.fields_for :passengers, @booking.passenger, index:passenger_index do |passenger_form| %>
@@ -22,6 +35,8 @@
         <% end %>
       <% end %>
     </ul>
+<% end %>
+    <%= f.hidden_field :flight, value: @booking.flight.id %>
     <%= f.submit "Submit" %>
 <% end %>
         

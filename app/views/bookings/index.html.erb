@@ -8,9 +8,11 @@
       Departing on <%= booking.flight.date %> at 
       <%= booking.flight.departure_time.to_s(:time) %>
     </p>
-    <p>
-    Confirmed Passenger: 
-    <%= booking.passenger.name %>
-    </p><br/><br/>
+    <% booking.passengers.each do | p | %>
+      <%= p.name %>
+    <% end %>
+    
+    
 <% end %>
+
     
