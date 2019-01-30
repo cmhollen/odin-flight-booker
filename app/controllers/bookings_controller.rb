@@ -16,6 +16,9 @@ def create
 
   
   if @booking.save
+    @booking.passengers.each do |p|
+      PassengerMailer.thank_you_email(p).deliver_now
+    end
     redirect_to bookings_path
   else
     render 'new'
